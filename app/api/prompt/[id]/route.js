@@ -3,7 +3,8 @@ import Prompt from "@models/prompt";
 
 // GET (read)
 
-export const GET = async (req, { params }) => {
+export const GET = async (req, props) => {
+  const params = await props.params;
   try {
     await connectDB();
     const prompts = await Prompt.findById(params.id).populate("creator");
@@ -16,7 +17,8 @@ export const GET = async (req, { params }) => {
 };
 
 // Patch (update)
-export const PATCH = async (req, { params }) => {
+export const PATCH = async (req, props) => {
+  const params = await props.params;
   const { prompt, tag } = await req.json();
 
   try {
@@ -38,7 +40,8 @@ export const PATCH = async (req, { params }) => {
 
 // Delete (delete)
 
-export const DELETE = async (req, { params }) => {
+export const DELETE = async (req, props) => {
+  const params = await props.params;
   try {
     await connectDB();
 
